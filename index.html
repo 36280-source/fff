@@ -1,1 +1,214 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Luminous Pond - Harmony in Water</title>
+    <style>
+        /* 1. ล้างค่าเริ่มต้นและตั้งค่าพื้นหลัง */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        body {
+            height: 100vh;
+            background: url('pond-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 2. แถบเมนูด้านบน (Navbar) */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #0c4a60;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #0c4a60;
+            border-bottom: 2px solid #0c4a60;
+        }
+
+        /* 3. การ์ดข้อความโปร่งแสงตรงกลางหน้าจอ */
+        .container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65); /* สีขาวโปร่งแสง */
+            backdrop-filter: blur(10px); /* เอฟเฟกต์กระจกฝ้า */
+            -webkit-backdrop-filter: blur(10px);
+            padding: 50px 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 550px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .glass-card h1 {
+            color: #0a3c4c;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .glass-card p {
+            color: #4a5568;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn-explore {
+            background: linear-gradient(135deg, #20b2aa, #008b8b);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(32, 178, 170, 0.3);
+        }
+
+        .btn-explore:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(32, 178, 170, 0.5);
+        }
+
+        /* 4. โซนปลาว่ายน้ำ (CSS Animation) */
+        .fish {
+            position: absolute;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* ปลาสีส้ม ว่ายเป็นวงกลมเฉียงๆ */
+        .fish-orange {
+            width: 140px;
+            top: 15%;
+            left: 10%;
+            animation: swim-pattern-1 25s ease-in-out infinite;
+        }
+
+        /* ปลาสีเหลือง ว่ายเฉียงตัดหน้าจอจากล่างขึ้นบน */
+        .fish-yellow {
+            width: 120px;
+            bottom: 10%;
+            right: 15%;
+            animation: swim-pattern-2 20s ease-in-out infinite;
+        }
+
+        /* ปลาสีขาว ว่ายวนขวา */
+        .fish-white {
+            width: 130px;
+            top: 40%;
+            right: 5%;
+            animation: swim-pattern-3 28s ease-in-out infinite;
+        }
+
+        /* 5. คาถาแอนิเมชั่นควบคุมการเคลื่อนไหวและการเลี้ยวของปลา */
+        @keyframes swim-pattern-1 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(100px, 50px) rotate(15deg); }
+            66% { transform: translate(50px, 120px) rotate(-10deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        @keyframes swim-pattern-2 {
+            0% { transform: translate(0, 0) rotate(-45deg); }
+            50% { transform: translate(-150px, -100px) rotate(-30deg); }
+            100% { transform: translate(0, 0) rotate(-45deg); }
+        }
+
+        @keyframes swim-pattern-3 {
+            0% { transform: translate(0, 0) rotate(90deg); }
+            50% { transform: translate(-80px, 80px) rotate(120deg); }
+            100% { transform: translate(0, 0) rotate(90deg); }
+        }
+
+        /* ฟุตเตอร์ด้านล่าง */
+        .footer {
+            position: fixed;
+            bottom: 15px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #718096;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">🎏 KOI POND</div>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Koi Varieties</a></li>
+            <li><a href="#">Lotus Garden</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <img src="koi-orange.png" class="fish fish-orange" alt="Koi Orange">
+    <img src="koi-yellow.png" class="fish fish-yellow" alt="Koi Yellow">
+    <img src="koi-white.png" class="fish fish-white" alt="Koi White">
+
+    <div class="container">
+        <div class="glass-card">
+            <h1>The Luminous Pond -<br>Harmony in Water</h1>
+            <p>Discover the beauty and tranquillity of our brilliantly illuminated koi habitat.</p>
+            <button class="btn-explore">Explore The Waters</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2026 Luminous Pond - All rights reserved
+    </div>
+
+</body>
+</html>
